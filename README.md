@@ -4,6 +4,8 @@
 
 ![SignFlow 项目页面](docs/images/signflow.png)
 
+*截图中的路径已作隐私处理。*
+
 ## 功能
 
 - **项目管理**：导入 Xcode 工程或工作区，选择 Scheme，查看项目配置和本地产物的签名状态。
@@ -20,7 +22,7 @@
 - Xcode 及其命令行工具；使用自己的 Apple 开发者账户、签名团队与可用的设备。
 - Swift 5 语言模式；应用没有第三方库依赖。Swift Package 使用 Swift tools 6.0。
 
-首次运行前，请在 Xcode 中登录 Apple 账户并完成团队、设备信任和开发者模式等配置。工程默认保留开发者本机的签名团队和 Bundle ID，其他开发者需要在 Xcode 的 **Signing & Capabilities** 中选择自己的团队，必要时修改 Bundle Identifier。
+首次运行前，请在 Xcode 中登录 Apple 账户并完成团队、设备信任和开发者模式等配置。在 Xcode 的 **Signing & Capabilities** 中选择自己的团队，必要时修改 Bundle Identifier。也可以在 `Config/Signing.local.xcconfig` 中设置 `DEVELOPMENT_TEAM`；该文件仅保存在本机。
 
 ## 构建与运行
 
@@ -41,7 +43,7 @@ open build/DerivedData/Build/Products/Debug/SignFlow.app
 swift test --scratch-path build/SwiftPM
 ```
 
-在当前 Beta 工具链下的兼容测试命令和验证记录见 [TESTING.md](TESTING.md)。仓库内部分验证脚本以及应用的产物登记和 Profile 备份流程依赖开发者本机的 AAR 登记工具及其固定路径（`~/Documents/Codex/monitor/bin/aar`）；在其他机器上使用相关流程前需要配置对应工具。普通构建命令不要求使用这些脚本。
+当前 Beta 工具链下也可使用 `swift test --build-system native --disable-sandbox --scratch-path build/SwiftPM`。仓库内部分验证脚本以及应用的产物登记和 Profile 备份流程依赖开发者本机的 AAR 登记工具及其固定路径（`~/Documents/Codex/monitor/bin/aar`）；在其他机器上使用相关流程前需要配置对应工具。普通构建命令不要求使用这些脚本。
 
 ## 使用
 
@@ -56,7 +58,6 @@ swift test --scratch-path build/SwiftPM
 
 - [架构说明](ARCHITECTURE.md)
 - [签名与续签流程](SIGNING_WORKFLOW.md)
-- [测试与验证](TESTING.md)
 - [已知限制](KNOWN_LIMITATIONS.md)
 
 目前不支持通用 IPA 的重签与安装。应用尚未完成 Developer ID 签名与公证，跨 Mac 分发需要另行配置。

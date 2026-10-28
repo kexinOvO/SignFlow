@@ -1,0 +1,24 @@
+build/
+.build/
+.swiftpm/
+*.xcuserstate
+.DS_Store
+xcuserdata/
+
+# Local signing configuration and private verification records
+/Config/Signing.local.xcconfig
+/TESTING.md
+/docs/.codex/
+/docs/*_VERIFICATION.md
+/docs/STABILITY_REVIEW_*.md
+
+# Credentials and local state
+*.mobileprovision
+*.provisionprofile
+*.p12
+*.p8
+*.key
+.env
+.env.*
+!.env.example
+*.log
